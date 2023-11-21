@@ -1,0 +1,84 @@
+@import "vars";
+
+/* Font */
+
+@mixin Typography($size: null, $weight: null, $color: null) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+
+  white-space: pre-line;
+  word-break: normal;
+
+  @include Mobile() {
+    white-space: normal;
+  }
+}
+
+/* Adaptive */
+
+@mixin Mobile {
+  @media screen and (max-width: #{$width-mobile}) {
+    @content;
+  }
+}
+
+@mixin Tablet {
+  @media screen and (max-width: #{$width-desktop}) {
+    @content;
+  }
+}
+
+@mixin Desktop {
+  @media screen and (max-width: #{$width-desktop}) {
+    @content;
+  }
+}
+
+@mixin DesktopLarge {
+  @media screen and (min-width: calc(#{$width-desktop} + 1px)) {
+    @content;
+  }
+}
+
+/* Button */
+
+@mixin Button {
+  width: 100%;
+  background-color: $color-primary-600;
+  padding: 15px 20px;
+  border-radius: $border-radius;
+  border: none;
+  text-align: center;
+  box-sizing: border-box;
+  @include Typography($font-size-3, 600, $color-white);
+  &:hover {
+    background-color: $color-primary-80;
+  }
+  &:disabled {
+    background-color: $color-primary-500;
+    color: $color-white;
+  }
+}
+
+/* Icon */
+
+@mixin Icon {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+/* Identification */
+
+@mixin Identification {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  img {
+    @include Icon;
+  }
+}

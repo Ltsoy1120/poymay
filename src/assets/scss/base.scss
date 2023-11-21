@@ -1,0 +1,98 @@
+@import "bundle.scss";
+
+* {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 16px "Inter", "Arial", sans-serif;
+  color: $color-text-primary;
+  overflow-y: scroll;
+  margin: unset;
+}
+
+/* Headings */
+
+h1 {
+  @include Typography($font-size-2, 600, $color-gray-900);
+  line-height: 28px;
+  text-align: center;
+}
+
+/* Text */
+
+p {
+  @include Typography($font-size-3, 500, $color-gray-900);
+  line-height: 24px;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+span {
+  @include Typography($font-size-4, 400, $color-gray-500);
+  line-height: 20px;
+}
+
+/* Anchor */
+
+a {
+  @include Typography($font-size-4, 400, $color-primary-70);
+  line-height: 20px;
+  word-break: normal;
+  text-decoration: none;
+}
+
+/* UX */
+
+input,
+button,
+textarea {
+  all: unset;
+  position: relative;
+}
+
+input {
+  cursor: revert;
+}
+//убрать стрелки в input[type="number"] во всех браузерах
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+button,
+textarea {
+  &:focus-visible {
+    outline: revert;
+  }
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  transition: 100ms ease opacity;
+  border-radius: $border-radius !important;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.75;
+  }
+}

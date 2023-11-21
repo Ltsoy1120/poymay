@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom"
+import GeneralError from "./containers/GeneralError"
+import ClientData from "./pages/ClientData"
+import FishingGrounds from "./pages/FishingGrounds"
+import Payment from "./pages/Payment"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GeneralError />
+      <Routes>
+        <Route path="/buy-fishing-online">
+          <Route path="fishing-grounds" element={<FishingGrounds />} />
+          <Route path="client-data" element={<ClientData />} />
+          <Route path="payment" element={<Payment />} />
+        </Route>
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
