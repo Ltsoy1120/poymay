@@ -1,0 +1,29 @@
+@import "../../assets/scss/bundle.scss";
+
+.custom-select-container {
+  position: relative;
+  width: 320px;
+}
+.custom-select-title {
+  @include Typography($font-size-3, 500, $color-gray-700);
+  margin-bottom: 5px;
+}
+/* Скрытие стандартной стрелки select */
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 9px 13px;
+  border: 1px solid $color-gray-300;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Расположение иконки (правый край, отступ 10px от края) */
+}
+
+/* Стили при наведении */
+.custom-select:hover {
+  border-color: #888;
+}

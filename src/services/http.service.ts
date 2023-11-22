@@ -13,16 +13,17 @@ export const http = axios.create({
 })
 
 http.interceptors.request.use(config => {
-  // const accessToken = localStorage.getItem("access_token")
+  const accessToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nzc0NiwiaWF0IjoxNzAwNTc2NzE2LCJleHAiOjE3MDMxNjg3MTZ9.iz_WYOge48iAJ1PY2LfffJplBJQv4prjxO2vpkF0ceU"
 
   config.headers = {
     ...config.headers
   } as AxiosHeaders
 
   // config.headers.post["Content-Type"] = "application/json"
-  // if (accessToken) {
-  //   config.headers.append("Authorization", `Bearer ${accessToken}`)
-  // }
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`
+  }
 
   return config
 })

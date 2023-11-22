@@ -1,0 +1,10 @@
+@import "../../../assets/scss/bundle";
+
+.icon {
+  display: inline;
+  vertical-align: middle;
+
+  use {
+    pointer-events: none;
+  }
+}

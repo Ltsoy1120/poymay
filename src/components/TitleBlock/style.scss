@@ -1,0 +1,8 @@
+@import "../../assets/scss/bundle.scss";
+
+.block-title {
+  @include Typography($font-size-3, 500, $color-gray-700);
+  line-height: 20px;
+  margin-bottom: 5px;
+  margin-top: 25px;
+}

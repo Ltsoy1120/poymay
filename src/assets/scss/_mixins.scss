@@ -44,19 +44,18 @@
 /* Button */
 
 @mixin Button {
-  width: 100%;
-  background-color: $color-primary-600;
-  padding: 15px 20px;
-  border-radius: $border-radius;
+  background-color: $color-gray-600;
+  padding: 9px 17px;
+  border-radius: 6px;
   border: none;
   text-align: center;
   box-sizing: border-box;
   @include Typography($font-size-3, 600, $color-white);
   &:hover {
-    background-color: $color-primary-80;
+    background-color: $color-gray-500;
   }
   &:disabled {
-    background-color: $color-primary-500;
+    background-color: $color-gray-300;
     color: $color-white;
   }
 }

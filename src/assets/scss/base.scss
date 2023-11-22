@@ -17,33 +17,31 @@ body {
 /* Headings */
 
 h1 {
-  @include Typography($font-size-2, 600, $color-gray-900);
-  line-height: 28px;
-  text-align: center;
+  @include Typography($font-size-1, 500, $color-gray-900);
+  line-height: 24px;
 }
 
 /* Text */
 
 p {
-  @include Typography($font-size-3, 500, $color-gray-900);
-  line-height: 24px;
+  @include Typography($font-size-3, 400, $color-gray-500);
+  line-height: 20px;
   overflow-wrap: anywhere;
-  text-align: center;
 }
 
 span {
-  @include Typography($font-size-4, 400, $color-gray-500);
+  @include Typography($font-size-3, 400, $color-gray-500);
   line-height: 20px;
 }
 
 /* Anchor */
 
-a {
-  @include Typography($font-size-4, 400, $color-primary-70);
-  line-height: 20px;
-  word-break: normal;
-  text-decoration: none;
-}
+// a {
+//   @include Typography($font-size-3, 400, $color-primary-70);
+//   line-height: 20px;
+//   word-break: normal;
+//   text-decoration: none;
+// }
 
 /* UX */
 
@@ -95,4 +93,8 @@ button {
   &:not(:disabled):active {
     opacity: 0.75;
   }
+}
+
+.block {
+  margin-bottom: 25px;
 }
