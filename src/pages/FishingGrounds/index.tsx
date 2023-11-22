@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Button from "../../components/Button"
+import TitlePage from "../../components/TitlePage"
 import FishingCards from "../../containers/FishingCards"
 import FishingSelect from "../../containers/FishingSelect"
 import Steps from "../../containers/Steps"
@@ -23,17 +24,17 @@ const FishingGrounds = () => {
   const regions: string[] = getRegionsArr(fishingData)
 
   useEffect(() => {
-    // dispatch(getRegions())
+    dispatch(getRegions())
   }, [])
 
   return (
     <div className="wrapper">
       <Steps steps={steps} />
       <div className="main">
-        <div className="main__header">
-          <h1>Выбор рыболовного участка</h1>
-          <p>Выберите область, водоём и участок</p>
-        </div>
+        <TitlePage
+          title="Выбор рыболовного участка"
+          subTitle="Выберите область, водоём и участок"
+        />
         <FishingSelect
           title="Область"
           options={regions}
