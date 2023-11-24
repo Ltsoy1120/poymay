@@ -1,29 +1,28 @@
 import axios, { AxiosError, AxiosHeaders, AxiosResponse } from "axios"
 import { store } from "../store"
 import { setErrorMessage } from "../store/slices/generalErrorSlice"
-const API_URL = process.env.REACT_APP_API_URL
+export const API_URL = process.env.REACT_APP_API_URL
 
 export const http = axios.create({
-  baseURL: API_URL,
-  withCredentials: false,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-  }
+  baseURL: API_URL
+  // withCredentials: false,
+  // headers: {
+  //   "Access-Control-Allow-Origin": "*",
+  //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  // }
 })
 
 http.interceptors.request.use(config => {
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nzc0NiwiaWF0IjoxNzAwNTc2NzE2LCJleHAiOjE3MDMxNjg3MTZ9.iz_WYOge48iAJ1PY2LfffJplBJQv4prjxO2vpkF0ceU"
+  // const accessToken =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nzc0NiwiaWF0IjoxNzAwNTc2NzE2LCJleHAiOjE3MDMxNjg3MTZ9.iz_WYOge48iAJ1PY2LfffJplBJQv4prjxO2vpkF0ceU"
 
   config.headers = {
     ...config.headers
   } as AxiosHeaders
 
-  // config.headers.post["Content-Type"] = "application/json"
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
-  }
+  // if (accessToken) {
+  //   config.headers.Authorization = `Bearer ${accessToken}`
+  // }
 
   return config
 })

@@ -1,0 +1,14 @@
+@import "../../../assets/scss/bundle.scss";
+
+.waterGround {
+  display: flex;
+  padding: 16px 24px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid $color-gray-300;
+  h3 {
+    @include Typography($font-size-3, 400, $color-gray-900);
+    width: 80%;
+  }
+}

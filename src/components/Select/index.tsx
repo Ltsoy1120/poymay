@@ -1,14 +1,22 @@
 import React from "react"
+import { IRegion } from "../../pages/FishingGrounds"
 import "./style.scss"
 
 interface SelectProps {
-  options: string[]
-  setRegion: React.Dispatch<React.SetStateAction<string>>
+  options: IRegion[]
+  setRegion: React.Dispatch<React.SetStateAction<IRegion>>
 }
 const Select: React.FC<SelectProps> = ({ options, setRegion }) => {
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setRegion(e.target.value)
+    const selectedOptionId = e.target.value
+    const selectedOption = options.find(
+      option => option.id === Number(selectedOptionId)
+    )
+    if (selectedOption) {
+      setRegion({ id: selectedOption.id, name: selectedOption.name })
+    }
   }
+
   return (
     <div className="custom-select-container">
       <select
@@ -16,9 +24,9 @@ const Select: React.FC<SelectProps> = ({ options, setRegion }) => {
         style={{ backgroundImage: "url('/static/images/selector.svg')" }}
         onChange={selectHandler}
       >
-        {options.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
+        {options.map(option => (
+          <option key={option.id} value={option.id}>
+            {option.name}
           </option>
         ))}
       </select>

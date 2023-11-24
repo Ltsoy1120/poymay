@@ -1,15 +1,20 @@
-import { FishingCategory } from "../../../models/fishing"
+import { FishingSlidersResultDTO } from "../../../models/fishing"
+import { API_URL } from "../../../services/http.service"
 import "./style.scss"
 
 interface FishingCardProps {
-  category: FishingCategory
+  category: FishingSlidersResultDTO
+  onClick: (id: number) => void
 }
 
-const FishingCard = ({ category }: FishingCardProps) => {
+const FishingCard = ({ category, onClick }: FishingCardProps) => {
+  const handleCardClick = () => {
+    onClick(category.category.id)
+  }
   return (
-    <div className="fishing-card">
-      <img src="" alt="" />
-      <h3 className="fishing-card__title">{category.name}</h3>
+    <div className="fishing-card" onClick={handleCardClick}>
+      <img src={`${API_URL}${category.image.url}`} alt="водоем" />
+      <h3 className="fishing-card__title">{category.title}</h3>
     </div>
   )
 }

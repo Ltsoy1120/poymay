@@ -1,9 +1,11 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import generalErrorReducer from "./slices/generalErrorSlice"
+import fishingSlice from "./slices/fishingSlice"
 
 const rootReducer = combineReducers({
-  generalError: generalErrorReducer
+  generalError: generalErrorReducer,
+  fishing: fishingSlice
 })
 
 function setupStore() {

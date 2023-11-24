@@ -1,12 +1,13 @@
 import React from "react"
 import Select from "../../components/Select"
 import TitleBlock from "../../components/TitleBlock"
+import { IRegion } from "../../pages/FishingGrounds"
 import "./style.scss"
 
 interface FishingSelectProps {
-  options: string[]
+  options: IRegion[]
   title: string
-  setRegion: React.Dispatch<React.SetStateAction<string>>
+  setRegion: React.Dispatch<React.SetStateAction<IRegion>>
 }
 const FishingSelect: React.FC<FishingSelectProps> = ({
   options,

@@ -1,14 +1,41 @@
 import { AppDispatch } from ".."
 import { fishingService } from "../../services/fishing.service"
+import {
+  setCategoriesById,
+  setFishingData,
+  setSliders
+} from "../slices/fishingSlice"
 
 export const getRegions = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      // dispatch(authFetching())
       const resp = await fishingService.getRegions()
-      console.log("partialRegistration", resp.data)
       if (resp.data) {
-        // dispatch(setPartialRegistrationData(payload))
+        dispatch(setFishingData(resp.data))
+        return resp.data
+      }
+    } catch (error) {}
+  }
+}
+
+export const getSliders = () => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const resp = await fishingService.getSliders()
+      if (resp.data) {
+        dispatch(setSliders(resp.data))
+        return resp.data
+      }
+    } catch (error) {}
+  }
+}
+
+export const getCategoriesById = (id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const resp = await fishingService.getCategoriesById(id)
+      if (resp.data) {
+        dispatch(setCategoriesById(resp.data))
         return resp.data
       }
     } catch (error) {}
