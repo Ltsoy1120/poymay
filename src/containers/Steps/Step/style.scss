@@ -33,6 +33,13 @@
   border: 2px solid $color-gray-600;
   @include Typography($font-size-3, 600, $color-gray-600);
 }
+
+.doneStep .step__step {
+  border: none;
+  background: #303f46;
+}
+
+.doneStep .step__content,
 .active .step__content {
   @include Typography($font-size-3, 600, $color-gray-600);
 }

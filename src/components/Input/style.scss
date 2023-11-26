@@ -9,8 +9,6 @@
     display: flex;
     width: 300px;
     padding: 9px 13px;
-    align-items: center;
-    align-self: stretch;
     @include Typography($font-size-3, 400, $color-gray-500);
     border-radius: 6px;
     border: 1px solid #d1d5db;

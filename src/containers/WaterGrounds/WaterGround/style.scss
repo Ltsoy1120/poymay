@@ -11,4 +11,8 @@
     @include Typography($font-size-3, 400, $color-gray-900);
     width: 80%;
   }
+  &:hover {
+    cursor: pointer;
+    outline: 3px solid $color-gray-600;
+  }
 }

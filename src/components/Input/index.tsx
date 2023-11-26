@@ -1,20 +1,22 @@
-import React from "react"
+import React, { ChangeEvent } from "react"
 import "./style.scss"
 
 interface InputProps {
   label: string
   name: string
   type?: "text" | "number" | "tel" | "date"
+  placeholder?: string
   disabled?: boolean
   autoFocus?: boolean
   value: string
-  onChange: () => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   width?: number
 }
 const Input = ({
   label,
   name,
   type,
+  placeholder,
   disabled,
   autoFocus,
   value,
@@ -29,6 +31,7 @@ const Input = ({
         name={name}
         type={type ?? "text"}
         className="input"
+        placeholder={placeholder}
         required
         disabled={disabled}
         autoFocus={autoFocus}

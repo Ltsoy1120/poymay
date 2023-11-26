@@ -10,9 +10,15 @@ import "./style.scss"
 interface FishingCardsProps {
   region: IRegion
   title: string
+  categoryId: number
   setCategoryId: React.Dispatch<React.SetStateAction<number>>
 }
-const FishingCards = ({ region, title, setCategoryId }: FishingCardsProps) => {
+const FishingCards = ({
+  region,
+  title,
+  categoryId,
+  setCategoryId
+}: FishingCardsProps) => {
   const dispatch = useAppDispatch()
   const fishingSliders = useAppSelector(state => state.fishing.sliders)
 
@@ -47,6 +53,7 @@ const FishingCards = ({ region, title, setCategoryId }: FishingCardsProps) => {
           <FishingCard
             key={category.id}
             category={category}
+            categoryId={categoryId}
             onClick={handleClick}
           />
         ))}

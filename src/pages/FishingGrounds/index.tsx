@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Button from "../../components/Button"
 import TitlePage from "../../components/TitlePage"
 import FishingCards from "../../containers/FishingCards"
@@ -17,16 +18,21 @@ export interface IRegion {
 }
 const FishingGrounds = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   // const pathName = useLocation().pathname
   const fishingData = useAppSelector(state => state.fishing.fishingData)
 
   const [regions, setRegions] = useState<IRegion[]>([])
-  const [region, setRegion] = useState<IRegion>({
-    id: 1,
-    name: "Алматинская область"
-  })
-  const [categoryId, setСategoryId] = useState<number>(7)
-  console.log("categoryId", categoryId)
+  const [region, setRegion] = useState<IRegion>(
+    regions[0] ?? {
+      id: 1,
+      name: "Алматинская область"
+    }
+  )
+  const [categoryId, setСategoryId] = useState<number>(
+    fishingData ? fishingData[0]?.categories[0].id : 7
+  )
+
   useEffect(() => {
     dispatch(getRegions())
     dispatch(getSliders())
@@ -40,6 +46,10 @@ const FishingGrounds = () => {
       setRegions(regions)
     }
   }, [fishingData])
+
+  const continueHandler = () => {
+    navigate("/online-buy-fishing/client-data")
+  }
 
   return (
     <div className="wrapper">
@@ -57,11 +67,12 @@ const FishingGrounds = () => {
         <FishingCards
           region={region}
           title="Водоемы"
+          categoryId={categoryId}
           setCategoryId={setСategoryId}
         />
         <WaterGrounds title="Рыболовный участок" categoryId={categoryId} />
         <div className="main__footer">
-          <Button>Далее</Button>
+          <Button onClick={continueHandler}>Далее</Button>
         </div>
       </div>
     </div>

@@ -1,18 +1,18 @@
 export const steps = [
   {
     step: "01",
-    content: "Выбор рыболовного участка",
-    path: "/online-buy-fishing/fishing-grounds"
+    content: "Выбор рыболовного участка"
+    // path: "/online-buy-fishing/fishing-grounds"
   },
   {
     step: "02",
-    content: "Заполнение персональных данных",
-    path: "/online-buy-fishing/client-data"
+    content: "Заполнение персональных данных"
+    // path: "/online-buy-fishing/client-data"
   },
   {
     step: "03",
-    content: "Подтверждение и оплата",
-    path: "/online-buy-fishing/payment"
+    content: "Подтверждение и оплата"
+    // path: "/online-buy-fishing/payment"
   }
 ]
 

@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { VaucherDataResultDTO } from "../../models/client"
 import {
   FishingCategory,
   FishingCity,
+  FishingProduct,
   FishingSlidersResultDTO
 } from "../../models/fishing"
 
@@ -12,6 +14,9 @@ export interface FishingState {
   categoryId: string
   sliders: FishingSlidersResultDTO[]
   categoriesById: FishingCategory[]
+  putevka: FishingProduct | null
+  vaucherData: VaucherDataResultDTO | null
+  step: string
 }
 const initialState: FishingState = {
   fishingData: [],
@@ -19,7 +24,10 @@ const initialState: FishingState = {
   categoriesByRegion: [],
   categoryId: "",
   sliders: [],
-  categoriesById: []
+  categoriesById: [],
+  putevka: null,
+  vaucherData: null,
+  step: "01"
 }
 
 export const fishingSlice = createSlice({
@@ -40,6 +48,15 @@ export const fishingSlice = createSlice({
     },
     setCategoriesById(state, action: PayloadAction<FishingCategory[]>) {
       state.categoriesById = action.payload
+    },
+    setStep(state, action: PayloadAction<string>) {
+      state.step = action.payload
+    },
+    setPutevka(state, action: PayloadAction<FishingProduct>) {
+      state.putevka = action.payload
+    },
+    setVaucherData(state, action: PayloadAction<VaucherDataResultDTO>) {
+      state.vaucherData = action.payload
     }
   }
 })
@@ -48,7 +65,10 @@ export const {
   setRegion,
   setCategoryId,
   setSliders,
-  setCategoriesById
+  setCategoriesById,
+  setStep,
+  setPutevka,
+  setVaucherData
 } = fishingSlice.actions
 
 export default fishingSlice.reducer

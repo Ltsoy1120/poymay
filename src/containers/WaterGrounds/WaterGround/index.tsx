@@ -1,14 +1,24 @@
 import React from "react"
+import { classMerge } from "../../../helpers/common"
 import { FishingProduct } from "../../../models/fishing"
+import { useAppSelector } from "../../../store"
 import "./style.scss"
 
 interface WaterGroundsProps {
   waterGround: FishingProduct
+  onClick: () => void
 }
 
-const WaterGround = ({ waterGround }: WaterGroundsProps) => {
+const WaterGround = ({ waterGround, onClick }: WaterGroundsProps) => {
+  const putevkaId = useAppSelector(state => state.fishing.putevka?.id)
   return (
-    <div className="waterGround">
+    <div
+      className={classMerge(
+        "waterGround",
+        putevkaId === waterGround.id ? "active" : ""
+      )}
+      onClick={onClick}
+    >
       <h3>{waterGround.title}</h3>
       <svg
         xmlns="http://www.w3.org/2000/svg"

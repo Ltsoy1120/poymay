@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store"
 import WaterGround from "./WaterGround"
 import { getCategoriesById } from "../../store/actions/fishingActions"
 import "./style.scss"
+import { setPutevka } from "../../store/slices/fishingSlice"
 
 interface WaterGroundsProps {
   title: string
@@ -18,7 +19,7 @@ const WaterGrounds = ({ title, categoryId }: WaterGroundsProps) => {
   const [waterGrounds, setWaterGrounds] = useState<FishingProduct[]>([])
 
   useEffect(() => {
-    dispatch(getCategoriesById(categoryId))
+    categoryId && dispatch(getCategoriesById(categoryId))
   }, [dispatch, categoryId])
 
   useEffect(() => {
@@ -28,7 +29,12 @@ const WaterGrounds = ({ title, categoryId }: WaterGroundsProps) => {
       const foundCategory = categoriesById.find(
         category => category.id === categoryId
       )
-      return foundCategory ? foundCategory.products : undefined
+      if (foundCategory) {
+        const publishProducts = foundCategory.products?.filter(
+          product => product.status === "published"
+        )
+        return publishProducts ? publishProducts : undefined
+      }
     }
     const waterGrounds = getWaterGroundsByCategory(categoryId)
     if (waterGrounds) {
@@ -36,12 +42,20 @@ const WaterGrounds = ({ title, categoryId }: WaterGroundsProps) => {
     }
   }, [categoriesById, categoryId])
 
+  const handleClick = (putevka: FishingProduct) => {
+    dispatch(setPutevka(putevka))
+  }
+
   return (
     <div className="block">
       <TitleBlock title={title} />
       <div className="waterGrounds">
         {waterGrounds.map(waterGround => (
-          <WaterGround key={waterGround.id} waterGround={waterGround} />
+          <WaterGround
+            key={waterGround.id}
+            waterGround={waterGround}
+            onClick={() => handleClick(waterGround)}
+          />
         ))}
       </div>
     </div>

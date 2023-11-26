@@ -1,5 +1,11 @@
+@import "../../assets/scss/bundle.scss";
+
 .fishing-cards {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+
+  .active {
+    outline: 3px solid $color-gray-600;
+  }
 }

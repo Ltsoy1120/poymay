@@ -5,7 +5,7 @@ export interface FishingCity {
   created_at: string
   updated_at: string
   Coordinates: FishingCordinates | null
-  categories?: FishingCategory[]
+  categories: FishingCategory[]
 }
 
 export interface FishingCategory {
