@@ -19,8 +19,8 @@ export interface IRegion {
 const FishingGrounds = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  // const pathName = useLocation().pathname
   const fishingData = useAppSelector(state => state.fishing.fishingData)
+  const putevka = useAppSelector(state => state.fishing.putevka)
 
   const [regions, setRegions] = useState<IRegion[]>([])
   const [region, setRegion] = useState<IRegion>(
@@ -72,7 +72,9 @@ const FishingGrounds = () => {
         />
         <WaterGrounds title="Рыболовный участок" categoryId={categoryId} />
         <div className="main__footer">
-          <Button onClick={continueHandler}>Далее</Button>
+          <Button onClick={continueHandler} disabled={!putevka}>
+            Далее
+          </Button>
         </div>
       </div>
     </div>

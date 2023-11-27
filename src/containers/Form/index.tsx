@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Button from "../../components/Button"
 import Input from "../../components/Input"
@@ -31,6 +31,27 @@ const Form = () => {
     Address: "",
     putevka: putevka ? putevka.id : 0
   })
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+
+  // Функция для проверки всех полей state на наличие пустых значений
+  const checkFieldsNotEmpty = useCallback(() => {
+    for (const key in state) {
+      if (Object.prototype.hasOwnProperty.call(state, key)) {
+        const fieldValue = state[key as keyof ClientDTO]
+        if (fieldValue === "" || fieldValue === 0) {
+          setIsButtonDisabled(true)
+          return
+        }
+      }
+    }
+    setIsButtonDisabled(false)
+  }, [state]) // Зависимость от state
+
+  useEffect(() => {
+    // Вызываем функцию checkFieldsNotEmpty внутри useEffect
+    checkFieldsNotEmpty()
+  }, [checkFieldsNotEmpty]) // Зависимость от checkFieldsNotEmpty
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -194,7 +215,9 @@ const Form = () => {
         </div>
       </div>
       <div className="main__footer">
-        <Button type="submit">Далее</Button>
+        <Button type="submit" disabled={isButtonDisabled}>
+          Далее
+        </Button>
       </div>
     </form>
   )

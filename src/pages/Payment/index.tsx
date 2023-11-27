@@ -29,17 +29,18 @@ const Payment = () => {
       language: language
     })
     widget.pay(
-      "charge", // или "auth"
+      "auth", // или "charge"
       {
         //options
         publicId: "pk_a769ae60af79d2680d22691fe589c", //id из личного кабинета
         description: "Оплата товаров в example.com", //назначение
         amount: vaucherData?.price, //сумма
+        // amount: 100, //сумма
         currency: "KZT", //валюта
         // accountId: "user@example.com", //идентификатор плательщика (необязательно)
-        invoiceId: vaucherData?.id //номер заказа  (необязательно)
-        // skin: "mini", //дизайн виджета (необязательно)
-        // autoClose: 3
+        invoiceId: vaucherData?.id, //номер заказа  (необязательно)
+        skin: "mini", //дизайн виджета (необязательно)
+        autoClose: 3
       },
       {
         onSuccess: function (options: any) {
