@@ -41,7 +41,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         style={{ width }}
-        min={type === "date" ? new Date().toISOString().split("T")[0] : ""}
+        min={type === "date" ? new Date().toISOString().split("T")[0] : 0}
       />
     </div>
   )
