@@ -160,7 +160,7 @@ const Form = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("state", state)
+    console.log("state===", state)
     const result = await dispatch(createVauchers(state))
     if (result) {
       navigate("/online-buy-fishing/payment")
