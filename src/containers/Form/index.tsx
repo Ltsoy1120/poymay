@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Button from "../../components/Button"
 import Input from "../../components/Input"
+import Modal from "../../components/Modal"
 import { AddressDTO, ClientDTO } from "../../models/client"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { createVauchers } from "../../store/actions/fishingActions"
@@ -11,6 +12,8 @@ const Form = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const putevka = useAppSelector(state => state.fishing.putevka)
+  const [show, setShow] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const [address, setAddress] = useState<AddressDTO>({
     city: "",
     region: "",
@@ -24,10 +27,10 @@ const Form = () => {
     first_name: "",
     patronymic: "",
     email: "",
-    // phone: "",
+    phone: "",
     DateFrom: "",
-    days: 0,
-    kg: 0,
+    days: putevka?.type === "seasonal" ? Number(putevka.period) : 0,
+    kg: putevka?.type === "seasonal" ? Number(putevka.kg) : 0,
     Address: "",
     putevka: putevka ? putevka.id : 0
   })
@@ -45,8 +48,17 @@ const Form = () => {
         }
       }
     }
+    for (const key in address) {
+      if (Object.prototype.hasOwnProperty.call(address, key)) {
+        const fieldValue = address[key as keyof AddressDTO]
+        if (fieldValue === "") {
+          setIsButtonDisabled(true)
+          return
+        }
+      }
+    }
     setIsButtonDisabled(false)
-  }, [state]) // Зависимость от state
+  }, [state, address]) // Зависимость от state
 
   useEffect(() => {
     // Вызываем функцию checkFieldsNotEmpty внутри useEffect
@@ -55,6 +67,16 @@ const Form = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
+    setError(false)
+    if (
+      name === "DateFrom" &&
+      putevka &&
+      value > putevka?.banperiod.start &&
+      value < putevka?.banperiod.end
+    ) {
+      setError(true)
+      setShow(true)
+    }
     if (
       name === "city" ||
       name === "region" ||
@@ -91,6 +113,7 @@ const Form = () => {
       kg: newDaysValue * Number(putevka?.kg) // Обновляем state.kg, умножая значение state.days на 3
     }))
   }
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log("state", state)
@@ -102,6 +125,15 @@ const Form = () => {
 
   return (
     <form onSubmit={onSubmit}>
+      <Modal
+        title="Упс, что-то пошло не так"
+        text={`Вы выбрали время внутри периода запрета улова ("${putevka?.banperiod.start}" - "${putevka?.banperiod.end}")}`}
+        show={show}
+        close={() => {
+          setShow(false)
+        }}
+        width={400}
+      />
       <div className="form">
         <div className="row">
           <Input
@@ -131,13 +163,13 @@ const Form = () => {
             value={state.email}
             onChange={handleChange}
           />
-          {/* <Input
-          label="Номер телефона"
-          name="phone"
-          type="tel"
-          value={state.phone}
-          onChange={handleChange}
-        /> */}
+          <Input
+            label="Номер телефона"
+            name="phone"
+            type="tel"
+            value={state.phone}
+            onChange={handleChange}
+          />
         </div>
         <div className="row">
           <Input
@@ -147,11 +179,13 @@ const Form = () => {
             value={state.DateFrom}
             onChange={handleChange}
             width={230}
+            className={error ? "error" : ""}
           />
           <Input
             label="Количество дней"
             name="days"
             type="number"
+            disabled={putevka?.type === "seasonal"}
             value={String(state.days)}
             onChange={e => updateStateDays(Number(e.target.value))}
             width={230}
@@ -200,7 +234,6 @@ const Form = () => {
           <Input
             label="Дом"
             name="house"
-            placeholder="дом ..."
             value={address.house}
             onChange={handleChange}
             width={230}
@@ -214,8 +247,8 @@ const Form = () => {
           />
         </div>
       </div>
-      <div className="main__footer">
-        <Button type="submit" disabled={isButtonDisabled}>
+      <div className="footer">
+        <Button disabled={error || isButtonDisabled} type="submit">
           Далее
         </Button>
       </div>

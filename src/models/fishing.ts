@@ -47,6 +47,24 @@ export interface FishingProduct {
   period: string
   type: string
   City: number
+  banperiod: BanPeriod
+  // number:null
+  // polygon:16
+  // client_address:null
+  // first_name:null
+  // last_name:null
+  // patronymic:null
+  // created_at:"2022-04-18T03:05:13.377Z"
+  // updated_at:"2023-07-07T16:31:58.752Z"
+  // isReserve:false
+  // Custom_field:[]
+  // Cordinate:null
+}
+
+export interface BanPeriod {
+  id: number
+  start: string
+  end: string
 }
 
 export interface FishingImage {

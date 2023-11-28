@@ -1,22 +1,9 @@
 @import "../../assets/scss/bundle.scss";
 
-.wrapper {
-  width: 1200px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  .main {
-    width: 100%;
-    border-radius: 6px;
-    box-sizing: border-box;
-    border: 1px solid $color-gray-300;
-    padding: 24px;
-    &__footer {
-      display: flex;
-      padding: 12px 24px;
-      justify-content: flex-end;
-      background: $color-gray-50;
-    }
-  }
+.fishing-grounds {
+  width: 100%;
+
+  // @include Tablet {
+  //   gap: 20px;
+  // }
 }

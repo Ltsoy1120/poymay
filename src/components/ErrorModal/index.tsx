@@ -8,7 +8,7 @@ interface ErrorModalProps {
 
 const ErrorModal = ({ error, close }: ErrorModalProps) => {
   return (
-    <div id="openModal" className="modal">
+    <div id="openErrorModal" className="modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">

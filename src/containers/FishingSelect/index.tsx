@@ -2,7 +2,6 @@ import React from "react"
 import Select from "../../components/Select"
 import TitleBlock from "../../components/TitleBlock"
 import { IRegion } from "../../pages/FishingGrounds"
-import "./style.scss"
 
 interface FishingSelectProps {
   options: IRegion[]

@@ -4,9 +4,8 @@ import Button from "../../components/Button"
 import TitlePage from "../../components/TitlePage"
 import FishingCards from "../../containers/FishingCards"
 import FishingSelect from "../../containers/FishingSelect"
-import Steps from "../../containers/Steps"
 import WaterGrounds from "../../containers/WaterGrounds"
-import { steps } from "../../data"
+import Footer from "../../layouts/BaseLayout/Footer"
 import { FishingCity } from "../../models/fishing"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { getRegions, getSliders } from "../../store/actions/fishingActions"
@@ -52,31 +51,25 @@ const FishingGrounds = () => {
   }
 
   return (
-    <div className="wrapper">
-      <Steps steps={steps} />
-      <div className="main">
-        <TitlePage
-          title="Выбор рыболовного участка"
-          subTitle="Выберите область, водоём и участок"
-        />
-        <FishingSelect
-          title="Область"
-          options={regions}
-          setRegion={setRegion}
-        />
-        <FishingCards
-          region={region}
-          title="Водоемы"
-          categoryId={categoryId}
-          setCategoryId={setСategoryId}
-        />
-        <WaterGrounds title="Рыболовный участок" categoryId={categoryId} />
-        <div className="main__footer">
-          <Button onClick={continueHandler} disabled={!putevka}>
-            Далее
-          </Button>
-        </div>
-      </div>
+    <div className="fishing-grounds">
+      <TitlePage
+        title="Выбор рыболовного участка"
+        subTitle="Выберите область, водоём и участок"
+      />
+      <FishingSelect title="Область" options={regions} setRegion={setRegion} />
+      <FishingCards
+        region={region}
+        title="Водоемы"
+        categoryId={categoryId}
+        setCategoryId={setСategoryId}
+      />
+      <WaterGrounds title="Рыболовный участок" categoryId={categoryId} />
+
+      <Footer
+        btnText="Далее"
+        disabled={!putevka}
+        clickHandler={continueHandler}
+      />
     </div>
   )
 }

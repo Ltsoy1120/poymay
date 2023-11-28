@@ -1,7 +1,7 @@
 @import "../../assets/scss/bundle.scss";
 
 .waterGrounds {
-  width: 500px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   border-radius: 6px;
@@ -11,5 +11,9 @@
     0px 1px 3px 0px rgba(0, 0, 0, 0.1);
   .active {
     outline: 3px solid $color-gray-600;
+  }
+
+  @include Tablet {
+    width: 100%;
   }
 }

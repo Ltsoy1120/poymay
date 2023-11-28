@@ -1,34 +1,16 @@
 @import "../../assets/scss/bundle.scss";
 
-.wrapper {
-  width: 1200px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  .main {
-    width: 100%;
-    border-radius: 6px;
-    box-sizing: border-box;
-    border: 1px solid $color-gray-300;
-    padding: 24px;
-    &__footer {
-      display: flex;
-      padding: 12px 24px;
-      justify-content: flex-end;
-      background: $color-gray-50;
+.payment {
+  .agreement {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    svg {
+      margin-right: 10px;
     }
-    .agreement {
-      display: flex;
-      align-items: center;
-      margin-top: 30px;
-      margin-bottom: 20px;
-      svg {
-        margin-right: 10px;
-      }
-      .link {
-        color: blue;
-      }
+    .link {
+      color: blue;
     }
   }
 }

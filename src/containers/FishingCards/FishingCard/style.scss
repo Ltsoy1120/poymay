@@ -24,4 +24,11 @@
     @include Typography($font-size-2, 600, $color-gray-900);
     margin: 0;
   }
+
+  @include Mobile {
+    width: 100%;
+    img {
+      object-fit: cover;
+    }
+  }
 }

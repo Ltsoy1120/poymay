@@ -46,6 +46,7 @@ const Step = ({ step, content }: IStep) => {
           height="72"
           viewBox="0 0 20 72"
           fill="none"
+          className="step__svg"
         >
           <g clipPath="url(#clip0_571_116)">
             <path

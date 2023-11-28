@@ -5,6 +5,7 @@
   .row {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     margin-bottom: 25px;
   }
@@ -28,6 +29,13 @@
       @include Typography(10px, 600, $color-white);
 
       color: $color-white;
+    }
+  }
+
+  @include Mobile {
+    .row {
+      flex-direction: column;
+      gap: 10px;
     }
   }
 }

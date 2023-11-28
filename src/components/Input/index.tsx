@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from "react"
+import { classMerge } from "../../helpers/common"
 import "./style.scss"
 
 interface InputProps {
@@ -11,6 +12,7 @@ interface InputProps {
   value: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   width?: number
+  className?: string
 }
 const Input = ({
   label,
@@ -21,7 +23,8 @@ const Input = ({
   autoFocus,
   value,
   onChange,
-  width
+  width,
+  className
 }: InputProps) => {
   return (
     <div className="input">
@@ -30,7 +33,7 @@ const Input = ({
         id={name}
         name={name}
         type={type ?? "text"}
-        className="input"
+        className={classMerge("input", className)}
         placeholder={placeholder}
         required
         disabled={disabled}
@@ -38,6 +41,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         style={{ width }}
+        min={type === "date" ? new Date().toISOString().split("T")[0] : ""}
       />
     </div>
   )

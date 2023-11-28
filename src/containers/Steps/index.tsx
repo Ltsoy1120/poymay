@@ -1,4 +1,3 @@
-import React from "react"
 import Step, { IStep } from "./Step"
 import "./style.scss"
 

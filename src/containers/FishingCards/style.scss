@@ -8,4 +8,9 @@
   .active {
     outline: 3px solid $color-gray-600;
   }
+
+  @include Mobile {
+    width: 100%;
+    gap: 15px;
+  }
 }

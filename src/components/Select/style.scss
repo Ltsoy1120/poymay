@@ -3,6 +3,10 @@
 .custom-select-container {
   position: relative;
   width: 320px;
+
+  @include Mobile {
+    width: 100%;
+  }
 }
 .custom-select-title {
   @include Typography($font-size-3, 500, $color-gray-700);

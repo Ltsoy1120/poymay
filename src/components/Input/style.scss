@@ -14,4 +14,17 @@
     border: 1px solid #d1d5db;
     box-shadow: 0px 1px 2px 0px $color-gray-300;
   }
+  .error {
+    border: 1px solid red;
+    @include Typography($font-size-3, 400, red);
+  }
+
+  @include Mobile {
+    width: 100%;
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
 }

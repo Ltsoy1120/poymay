@@ -3,7 +3,7 @@ export interface ClientDTO {
   last_name: string
   patronymic: string
   email: string
-  // phone: string
+  phone: string
   DateFrom: string
   days: number
   kg: number

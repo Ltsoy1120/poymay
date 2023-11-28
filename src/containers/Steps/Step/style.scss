@@ -8,6 +8,32 @@
   a {
     text-decoration: none;
   }
+
+  @include Tablet {
+    width: 100%;
+    .step {
+      padding: 10px;
+    }
+    .step__step {
+      width: 30px;
+      min-width: 30px;
+      height: 30px;
+    }
+    .step__svg {
+      display: none;
+    }
+  }
+
+  @include Mobile {
+    border-bottom: 1px solid $color-gray-300;
+    .step {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.step-wrap:last-child {
+  border-bottom: none;
 }
 
 .step {
