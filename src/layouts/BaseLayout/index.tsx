@@ -10,7 +10,8 @@ const BaseLayout: React.FC = () => {
   return (
     <div className="wrapper">
       <Steps steps={steps} />
-      {pathName !== "/online-buy-fishing/fishing-grounds" && <Back />}
+      {(pathName === "/online-buy-fishing/client-data" ||
+        pathName === "/online-buy-fishing/payment") && <Back />}
       <main className="main">
         <Outlet />
       </main>
