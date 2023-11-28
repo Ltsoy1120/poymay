@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import TitlePage from "../../components/TitlePage"
-import Footer from "../../layouts/BaseLayout/Footer"
+import Footer from "../../layouts/Footer"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { setStep } from "../../store/slices/fishingSlice"
 import "./style.scss"

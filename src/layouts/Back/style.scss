@@ -1,0 +1,16 @@
+@import "../../assets/scss/bundle.scss";
+
+.back {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+  span {
+    color: $color-gray-700;
+  }
+}

@@ -1,5 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import InputMask from "react-input-mask"
 import Button from "../../components/Button"
 import Input from "../../components/Input"
 import Modal from "../../components/Modal"
@@ -8,12 +9,19 @@ import { useAppDispatch, useAppSelector } from "../../store"
 import { createVauchers } from "../../store/actions/fishingActions"
 import "./style.scss"
 
+interface FieldError {
+  name: string
+  message: string
+}
+
 const Form = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const putevka = useAppSelector(state => state.fishing.putevka)
   const [show, setShow] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [emailError, setEmailError] = useState<FieldError | null>()
+  const [phoneError, setPhoneError] = useState<FieldError | null>()
+  const [dateError, setDateError] = useState<FieldError | null>()
   const [address, setAddress] = useState<AddressDTO>({
     city: "",
     region: "",
@@ -60,23 +68,59 @@ const Form = () => {
     setIsButtonDisabled(false)
   }, [state, address]) // Зависимость от state
 
+  const emailValidate = useCallback(() => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(state.email.toLowerCase())) {
+      setIsButtonDisabled(true)
+      setEmailError({
+        name: "email",
+        message: "Некорректный Email"
+      })
+    } else {
+      setEmailError(null)
+    }
+  }, [state.email])
+
+  const phoneValidate = useCallback(() => {
+    const phoneNumberDigits = state.phone.replace(/\D/g, "")
+
+    if (phoneNumberDigits.length !== 11) {
+      setIsButtonDisabled(true)
+      setPhoneError({
+        name: "phone",
+        message: "Некорректный номер телефона"
+      })
+    } else {
+      setPhoneError(null)
+    }
+  }, [state.phone])
+
+  const dateValidate = useCallback(() => {
+    if (
+      state.DateFrom &&
+      putevka &&
+      state.DateFrom >= putevka?.banperiod.start &&
+      state.DateFrom <= putevka?.banperiod.end
+    ) {
+      setDateError({ name: "DateFrom", message: "Введите корректную дату" })
+      setIsButtonDisabled(true)
+      setShow(true)
+    } else {
+      setDateError(null)
+    }
+  }, [state.DateFrom, putevka])
+
   useEffect(() => {
-    // Вызываем функцию checkFieldsNotEmpty внутри useEffect
     checkFieldsNotEmpty()
-  }, [checkFieldsNotEmpty]) // Зависимость от checkFieldsNotEmpty
+
+    state.email && emailValidate()
+    state.phone && phoneValidate()
+    state.DateFrom && dateValidate()
+  }, [checkFieldsNotEmpty, state, emailValidate, phoneValidate, dateValidate])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setError(false)
-    if (
-      name === "DateFrom" &&
-      putevka &&
-      value >= putevka?.banperiod.start &&
-      value <= putevka?.banperiod.end
-    ) {
-      setError(true)
-      setShow(true)
-    }
+
     if (
       name === "city" ||
       name === "region" ||
@@ -162,14 +206,24 @@ const Form = () => {
             name="email"
             value={state.email}
             onChange={handleChange}
+            error={emailError ? emailError : null}
           />
-          <Input
-            label="Номер телефона"
-            name="phone"
-            type="tel"
-            value={state.phone}
-            onChange={handleChange}
-          />
+          <div className="input">
+            <label htmlFor="phone">Номер телефона</label>
+            <InputMask
+              mask="+7 (999) 999 99 99"
+              maskChar="_"
+              id="phone"
+              name="phone"
+              required
+              placeholder="+7 (___) ___ __ __"
+              minLength={18}
+              value={state.phone}
+              onChange={handleChange}
+              className={phoneError ? "error" : ""}
+            />
+            {phoneError && <span>{phoneError.message}</span>}
+          </div>
         </div>
         <div className="row">
           <Input
@@ -179,7 +233,7 @@ const Form = () => {
             value={state.DateFrom}
             onChange={handleChange}
             width={230}
-            className={error ? "error" : ""}
+            error={dateError ? dateError : null}
           />
           <Input
             label="Количество дней"
@@ -248,7 +302,7 @@ const Form = () => {
         </div>
       </div>
       <div className="footer">
-        <Button disabled={error || isButtonDisabled} type="submit">
+        <Button disabled={isButtonDisabled} type="submit">
           Далее
         </Button>
       </div>

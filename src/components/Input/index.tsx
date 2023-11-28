@@ -9,10 +9,12 @@ interface InputProps {
   placeholder?: string
   disabled?: boolean
   autoFocus?: boolean
-  value: string
+  value?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  width?: number
   className?: string
+  width?: number
+  required?: boolean
+  error?: { name: string; message: string } | null
 }
 const Input = ({
   label,
@@ -23,8 +25,10 @@ const Input = ({
   autoFocus,
   value,
   onChange,
+  className,
   width,
-  className
+  required,
+  error
 }: InputProps) => {
   return (
     <div className="input">
@@ -33,9 +37,9 @@ const Input = ({
         id={name}
         name={name}
         type={type ?? "text"}
-        className={classMerge("input", className)}
+        className={classMerge("input", error ? "error" : "")}
         placeholder={placeholder}
-        required
+        required={required}
         disabled={disabled}
         autoFocus={autoFocus}
         value={value}
@@ -43,6 +47,7 @@ const Input = ({
         style={{ width }}
         min={type === "date" ? new Date().toISOString().split("T")[0] : 0}
       />
+      {error && <span>{error.message}</span>}
     </div>
   )
 }
