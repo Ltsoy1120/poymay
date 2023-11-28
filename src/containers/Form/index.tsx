@@ -71,8 +71,8 @@ const Form = () => {
     if (
       name === "DateFrom" &&
       putevka &&
-      value > putevka?.banperiod.start &&
-      value < putevka?.banperiod.end
+      value >= putevka?.banperiod.start &&
+      value <= putevka?.banperiod.end
     ) {
       setError(true)
       setShow(true)

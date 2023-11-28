@@ -63,6 +63,12 @@ const Payment = () => {
     )
   }
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const { href } = e.currentTarget
+    window.open(href, "_blank")
+  }
+
   return (
     <div className="payment">
       <TitlePage
@@ -104,6 +110,7 @@ const Payment = () => {
           <a
             href="https://poymay.kz/api/uploads/document_262854c5e9.pdf"
             className="link"
+            onClick={handleLinkClick}
           >
             Договора оферты
           </a>
