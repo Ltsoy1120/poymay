@@ -1,0 +1,12 @@
+@import "../../assets/scss/bundle.scss";
+
+.documents {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+
+  a {
+    @include Typography($font-size-3, 500, #0829e0);
+    text-decoration: none;
+  }
+}

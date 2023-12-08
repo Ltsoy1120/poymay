@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import TitlePage from "../../components/TitlePage"
+import Documents from "../../containers/Documents"
 import FishingCards from "../../containers/FishingCards"
 import FishingSelect from "../../containers/FishingSelect"
 import WaterGrounds from "../../containers/WaterGrounds"
@@ -69,6 +70,7 @@ const FishingGrounds = () => {
         disabled={!putevka}
         clickHandler={continueHandler}
       />
+      <Documents />
     </div>
   )
 }
