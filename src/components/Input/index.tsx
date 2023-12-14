@@ -30,6 +30,15 @@ const Input = ({
   required,
   error
 }: InputProps) => {
+  const today = new Date()
+  const maxDate = new Date(
+    today.getFullYear(),
+    today.getMonth() + 1,
+    today.getDate()
+  )
+    .toISOString()
+    .split("T")[0]
+
   return (
     <div className="input">
       <label htmlFor={name}>{label}</label>
@@ -45,7 +54,8 @@ const Input = ({
         value={value}
         onChange={onChange}
         style={{ width }}
-        min={type === "date" ? new Date().toISOString().split("T")[0] : 0}
+        min={type === "date" ? today.toISOString().split("T")[0] : undefined}
+        max={type === "date" ? maxDate : undefined}
       />
       {error && <span>{error.message}</span>}
     </div>

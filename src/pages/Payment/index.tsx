@@ -10,6 +10,7 @@ const Payment = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const vaucherData = useAppSelector(state => state.fishing.vaucherData)
+  const putevka = useAppSelector(state => state.fishing.putevka)
 
   useEffect(() => {
     if (!vaucherData) {
@@ -30,8 +31,8 @@ const Payment = () => {
       "auth", // или "charge"
       {
         //options
-        publicId: "pk_a769ae60af79d2680d22691fe589c", //id из личного кабинета
-        description: "Оплата товаров в example.com", //назначение
+        publicId: putevka?.publicId, //id из личного кабинета
+        description: "Покупка путевки", //назначение
         amount: vaucherData?.price, //сумма
         // amount: 100, //сумма
         currency: "KZT", //валюта

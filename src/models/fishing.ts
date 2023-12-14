@@ -48,6 +48,7 @@ export interface FishingProduct {
   type: string
   City: number
   banperiod: BanPeriod
+  publicId: string
   // number:null
   // polygon:16
   // client_address:null
