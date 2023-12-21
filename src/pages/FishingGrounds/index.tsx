@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import TitlePage from "../../components/TitlePage"
-import Documents from "../../containers/Documents"
 import FishingCards from "../../containers/FishingCards"
 import FishingSelect from "../../containers/FishingSelect"
 import WaterGrounds from "../../containers/WaterGrounds"
-import Footer from "../../layouts/Footer"
+import PageFooter from "../../components/PageFooter"
 import { FishingCity } from "../../models/fishing"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { getRegions, getSliders } from "../../store/actions/fishingActions"
@@ -65,12 +64,11 @@ const FishingGrounds = () => {
       />
       <WaterGrounds title="Рыболовный участок" categoryId={categoryId} />
 
-      <Footer
+      <PageFooter
         btnText="Далее"
         disabled={!putevka}
         clickHandler={continueHandler}
       />
-      <Documents />
     </div>
   )
 }

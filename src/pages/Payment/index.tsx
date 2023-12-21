@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import TitlePage from "../../components/TitlePage"
-import Footer from "../../layouts/Footer"
+import PageFooter from "../../components/PageFooter"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { setStep } from "../../store/slices/fishingSlice"
 import "./style.scss"
@@ -34,7 +34,6 @@ const Payment = () => {
         publicId: putevka?.publicId, //id из личного кабинета
         description: "Покупка путевки", //назначение
         amount: vaucherData?.price, //сумма
-        // amount: 100, //сумма
         currency: "KZT", //валюта
         // accountId: "user@example.com", //идентификатор плательщика (необязательно)
         invoiceId: vaucherData?.id, //номер заказа  (необязательно)
@@ -117,7 +116,7 @@ const Payment = () => {
           </a>
         </p>
       </div>
-      <Footer btnText="Перейти к оплате" clickHandler={pay} />
+      <PageFooter btnText="Перейти к оплате" clickHandler={pay} />
     </div>
   )
 }

@@ -1,0 +1,8 @@
+@import "../../assets/scss/bundle.scss";
+
+.page-footer {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: flex-end;
+  background: $color-gray-50;
+}

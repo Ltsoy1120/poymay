@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom"
 import Steps from "../../containers/Steps"
 import { steps } from "../../data"
 import Back from "../Back"
+import Footer from "../Footer"
 import "./style.scss"
 
 const BaseLayout: React.FC = () => {
@@ -15,6 +16,7 @@ const BaseLayout: React.FC = () => {
       <main className="main">
         <Outlet />
       </main>
+      {pathName !== "/online-buy-fishing/payment" && <Footer />}
     </div>
   )
 }

@@ -301,7 +301,7 @@ const Form = () => {
           />
         </div>
       </div>
-      <div className="footer">
+      <div className="page-footer">
         <Button disabled={isButtonDisabled} type="submit">
           Далее
         </Button>

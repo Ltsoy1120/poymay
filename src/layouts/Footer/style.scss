@@ -1,8 +1,82 @@
 @import "../../assets/scss/bundle.scss";
 
 .footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 0;
+  color: white;
   display: flex;
-  padding: 12px 24px;
-  justify-content: flex-end;
-  background: $color-gray-50;
+  justify-content: space-around;
+
+  &-wrapper {
+    background: $color-gray-700;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+
+    .site {
+      margin-top: 10px;
+      @include Typography($font-size-1, 500, white);
+      text-align: center;
+      text-decoration: none;
+    }
+
+    h3 {
+      @include Typography($font-size-2, 600, white);
+      margin-bottom: 20px;
+    }
+
+    a {
+      @include Typography($font-size-3, 500, white);
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .documents {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    a {
+      width: 40px;
+    }
+  }
+
+  .contacts__apps {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  @include Mobile {
+    flex-wrap: wrap;
+    .col {
+      width: 100%;
+      padding: 30px;
+      .site {
+        text-align: left;
+      }
+      a {
+        @include Typography($font-size-2, 500, white);
+      }
+      h3 {
+        @include Typography($font-size-1, 600, white);
+      }
+    }
+  }
 }
