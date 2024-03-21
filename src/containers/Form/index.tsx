@@ -36,7 +36,7 @@ const Form = () => {
     patronymic: "",
     email: "",
     phone: "",
-    // stateNumber: "",
+    stateNumber: "",
     DateFrom: "",
     days: putevka?.type === "seasonal" ? Number(putevka.period) : 0,
     kg: putevka?.type === "seasonal" ? Number(putevka.kg) : 0,
@@ -225,14 +225,14 @@ const Form = () => {
             />
             {phoneError && <span>{phoneError.message}</span>}
           </div>
-          {/* <Input
+          <Input
             label="Гос. номер"
             name="stateNumber"
             maxLength={12}
             minLength={3}
             value={state.stateNumber}
             onChange={handleChange}
-          /> */}
+          />
         </div>
         <div className="row">
           <Input
