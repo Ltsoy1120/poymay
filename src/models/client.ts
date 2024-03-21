@@ -4,6 +4,7 @@ export interface ClientDTO {
   patronymic: string
   email: string
   phone: string
+  stateNumber?: string
   DateFrom: string
   days: number
   kg: number

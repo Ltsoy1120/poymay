@@ -90,4 +90,14 @@
   p {
     @include Typography($font-size-3, 500, red);
   }
+
+  .btns-group {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+
+    button {
+      width: 150px;
+    }
+  }
 }

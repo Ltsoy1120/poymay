@@ -22,9 +22,9 @@ const Back = () => {
         <path
           d="M15.5 5L8.5 12L15.5 19"
           stroke="black"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
 

@@ -1,6 +1,10 @@
 import { AxiosResponse } from "axios"
 import { ClientDTO, CreateVaucherResultDTO } from "../models/client"
-import { FishingCategory } from "../models/fishing"
+import {
+  FishingCategory,
+  VaucherKaspiPayRequest,
+  VaucherKaspiPayResponse
+} from "../models/fishing"
 import http from "./http.service"
 
 export const fishingService = {
@@ -39,5 +43,20 @@ export const fishingService = {
         accept: "application/json"
       }
     })
+  },
+  createVauchersKaspiPay: async (
+    payload: VaucherKaspiPayRequest
+  ): Promise<AxiosResponse<VaucherKaspiPayResponse>> => {
+    return await http.post(`/vouchers/kaspi/pay`, payload)
   }
+  // getVoucherPdf: async (
+  //   id: number
+  // ): Promise<AxiosResponse<FishingCategory[]>> => {
+  //   return await http.get(`/uploads/report-${id}.pdf`, {
+  //     responseType: "arraybuffer",
+  //     headers: {
+  //       Accept: "application/pdf"
+  //     }
+  //   })
+  // }
 }

@@ -1,11 +1,13 @@
 import { AppDispatch } from ".."
 import { ClientDTO } from "../../models/client"
+import { VaucherKaspiPayRequest } from "../../models/fishing"
 import { fishingService } from "../../services/fishing.service"
 import {
   setCategoriesById,
   setFishingData,
   setSliders,
-  setVaucherData
+  setVaucherData,
+  setVaucherKaspiPay
 } from "../slices/fishingSlice"
 
 export const getRegions = () => {
@@ -50,6 +52,18 @@ export const createVauchers = (payload: ClientDTO) => {
       const resp = await fishingService.createVauchers(payload)
       if (resp.data) {
         dispatch(setVaucherData(resp.data.data))
+        return resp.data
+      }
+    } catch (error) {}
+  }
+}
+
+export const createVauchersKaspiPay = (payload: VaucherKaspiPayRequest) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const resp = await fishingService.createVauchersKaspiPay(payload)
+      if (resp.data) {
+        dispatch(setVaucherKaspiPay(resp.data))
         return resp.data
       }
     } catch (error) {}

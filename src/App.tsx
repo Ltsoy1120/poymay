@@ -6,6 +6,7 @@ import FishingGrounds from "./pages/FishingGrounds"
 import Payment from "./pages/Payment"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import "./assets/scss/base.scss"
+import PdfPage from "./pages/PdfPage"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<FishingGrounds />} />
             <Route path="fishing-grounds" element={<FishingGrounds />} />
             <Route path="client-data" element={<ClientData />} />
+            <Route path="payment-success/:id" element={<PdfPage />} />
             <Route path="payment" element={<Payment />} />
           </Route>
           <Route path="privacy-policy" element={<PrivacyPolicy />} />

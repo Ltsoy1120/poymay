@@ -1,9 +1,11 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import TitlePage from "../../components/TitlePage"
 import PageFooter from "../../components/PageFooter"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { setStep } from "../../store/slices/fishingSlice"
+import Modal from "../../components/Modal"
+import { createVauchersKaspiPay } from "../../store/actions/fishingActions"
 import "./style.scss"
 
 const Payment = () => {
@@ -11,6 +13,7 @@ const Payment = () => {
   const navigate = useNavigate()
   const vaucherData = useAppSelector(state => state.fishing.vaucherData)
   const putevka = useAppSelector(state => state.fishing.putevka)
+  const [show, setShow] = useState<boolean>(false)
 
   useEffect(() => {
     if (!vaucherData) {
@@ -20,10 +23,21 @@ const Payment = () => {
     dispatch(setStep("03"))
   }, [dispatch, navigate, vaucherData])
 
+  const handleQRClick = async () => {
+    const result =
+      vaucherData &&
+      (await dispatch(
+        createVauchersKaspiPay({ InvoiceId: vaucherData?.id, WithQR: true })
+      ))
+    if (result) {
+      window.location.href = result.redirectUrl
+    }
+  }
+
   let language = "ru-RU"
   const cp = window.cp
 
-  function pay() {
+  function cardPay() {
     var widget = new cp.CloudPayments({
       language: language
     })
@@ -41,10 +55,10 @@ const Payment = () => {
         autoClose: 3
       },
       {
-        onSuccess: function (options: any) {
+        onSuccess: async function (options: any) {
           // success
           console.log("options", options)
-          //действие при успешной оплате
+          navigate(`/online-buy-fishing/payment-success/${vaucherData?.id}`)
         },
         onFail: function (reason: any, options: any) {
           // fail
@@ -62,6 +76,12 @@ const Payment = () => {
       }
     )
   }
+
+  // const getVoucherPdf = async () => {
+  //   // const pdf = vaucherData && (await fishingService.getVoucherPdf(6498))
+  //   // console.log("pdf", pdf)
+  //   navigate(`/online-buy-fishing/payment-success/${vaucherData?.id}`)
+  // }
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -116,7 +136,25 @@ const Payment = () => {
           </a>
         </p>
       </div>
-      <PageFooter btnText="Перейти к оплате" clickHandler={pay} />
+      <PageFooter
+        btnText="Перейти к оплате"
+        // clickHandler={getVoucherPdf}
+        clickHandler={() => {
+          setShow(true)
+        }}
+      />
+      <Modal
+        title="Выберите способ оплаты"
+        isChoiceOfPayment
+        clickHandlerQR={handleQRClick}
+        clickHandlerCard={cardPay}
+        // clickHandlerCard={getVoucherPdf}
+        show={show}
+        close={() => {
+          setShow(false)
+        }}
+        width={400}
+      />
     </div>
   )
 }

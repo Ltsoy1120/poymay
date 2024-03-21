@@ -66,7 +66,7 @@ const Footer = () => {
           <a href="tel:+77775959606">+7 777 595 96 06</a>
           <div className="contacts__apps">
             <a
-              href="https://play.google.com/store/apps/details?id=kz.poymay"
+              href="https://apps.apple.com/kz/app/poymay/id1598883961"
               style={{
                 width: "40px",
                 borderRadius: "8px",
@@ -76,7 +76,7 @@ const Footer = () => {
               <img src="/static/images/app-store.png" alt="app-store" />
             </a>
             <a
-              href="https://apps.apple.com/kz/app/poymay/id1598883961"
+              href="https://play.google.com/store/apps/details?id=kz.poymay"
               style={{
                 width: "40px"
               }}

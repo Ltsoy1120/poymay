@@ -4,7 +4,8 @@ import {
   FishingCategory,
   FishingCity,
   FishingProduct,
-  FishingSlidersResultDTO
+  FishingSlidersResultDTO,
+  VaucherKaspiPayResponse
 } from "../../models/fishing"
 
 export interface FishingState {
@@ -16,6 +17,7 @@ export interface FishingState {
   categoriesById: FishingCategory[]
   putevka: FishingProduct | null
   vaucherData: VaucherDataResultDTO | null
+  vaucherKaspiPay: VaucherKaspiPayResponse | null
   step: string
 }
 const initialState: FishingState = {
@@ -27,6 +29,7 @@ const initialState: FishingState = {
   categoriesById: [],
   putevka: null,
   vaucherData: null,
+  vaucherKaspiPay: null,
   step: "01"
 }
 
@@ -57,6 +60,9 @@ export const fishingSlice = createSlice({
     },
     setVaucherData(state, action: PayloadAction<VaucherDataResultDTO>) {
       state.vaucherData = action.payload
+    },
+    setVaucherKaspiPay(state, action: PayloadAction<VaucherKaspiPayResponse>) {
+      state.vaucherKaspiPay = action.payload
     }
   }
 })
@@ -68,7 +74,8 @@ export const {
   setCategoriesById,
   setStep,
   setPutevka,
-  setVaucherData
+  setVaucherData,
+  setVaucherKaspiPay
 } = fishingSlice.actions
 
 export default fishingSlice.reducer

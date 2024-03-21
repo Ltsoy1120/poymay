@@ -9,6 +9,8 @@ interface InputProps {
   placeholder?: string
   disabled?: boolean
   autoFocus?: boolean
+  maxLength?: number
+  minLength?: number
   value?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
@@ -23,6 +25,8 @@ const Input = ({
   placeholder,
   disabled,
   autoFocus,
+  maxLength,
+  minLength,
   value,
   onChange,
   className,
@@ -54,6 +58,8 @@ const Input = ({
         value={value}
         onChange={onChange}
         style={{ width }}
+        maxLength={maxLength}
+        minLength={minLength}
         min={type === "date" ? today.toISOString().split("T")[0] : undefined}
         max={type === "date" ? maxDate : undefined}
       />

@@ -1,14 +1,27 @@
+import Button from "../Button"
 import "./style.scss"
 
 interface ModalProps {
   title: string
-  text: string
+  text?: string
+  isChoiceOfPayment?: boolean
+  clickHandlerQR?: () => void
+  clickHandlerCard?: () => void
   show: boolean
   close: () => void
   width?: number
 }
 
-const Modal = ({ title, text, show, close, width }: ModalProps) => {
+const Modal = ({
+  title,
+  text,
+  isChoiceOfPayment,
+  clickHandlerQR,
+  clickHandlerCard,
+  show,
+  close,
+  width
+}: ModalProps) => {
   return (
     <>
       {show && (
@@ -22,7 +35,13 @@ const Modal = ({ title, text, show, close, width }: ModalProps) => {
                 </span>
               </div>
               <div className="modal-body">
-                <p>{text}</p>
+                {text && <p>{text}</p>}
+                {isChoiceOfPayment && (
+                  <div className="btns-group">
+                    <Button onClick={clickHandlerQR}>QR</Button>
+                    <Button onClick={clickHandlerCard}>Картой</Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -87,3 +87,15 @@ export interface FishingSlidersResultDTO {
   created_at: string
   updated_at: string
 }
+
+export interface VaucherKaspiPayRequest {
+  InvoiceId: number
+  WithQR: boolean
+}
+
+export interface VaucherKaspiPayResponse {
+  code: number
+  redirectUrl: string
+  message: string
+  qrCodeImage: string
+}

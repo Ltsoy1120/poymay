@@ -37,7 +37,7 @@ const FishingCards = ({
     }
     const categories = getCategoriesByRegion(region)
     setCategoriesByRegion(categories)
-    setCategoryId(categories[0]?.category.id)
+    categories[0] && setCategoryId(categories[0]?.category.id)
   }, [region, fishingSliders, setCategoriesByRegion, setCategoryId])
 
   const handleClick = (id: number) => {

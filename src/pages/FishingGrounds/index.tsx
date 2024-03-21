@@ -27,6 +27,7 @@ const FishingGrounds = () => {
       name: "Алматинская область"
     }
   )
+
   const [categoryId, setСategoryId] = useState<number>(
     fishingData ? fishingData[0]?.categories[0].id : 7
   )
